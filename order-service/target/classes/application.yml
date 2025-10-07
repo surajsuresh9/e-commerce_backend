@@ -1,0 +1,28 @@
+server:
+  port: 9191
+
+
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform:org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka # Address of your Eureka Server
+    registerWithEureka: true # Whether to register this service with Eureka
+    fetchRegistry: true # Whether to fetch the registry from Eureka
+  instance:
+    hostname: localhost # Hostname for this instance (adjust for deployment)
+    preferIpAddress: false # Whether to use IP address instead of hostname

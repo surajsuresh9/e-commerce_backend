@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: discovery-service
+
+server:
+  port: 8761
+
+eureka:
+  client:
+    registerWithEureka: false # Whether to register this service with Eureka
+    fetchRegistry: false # Whether to fetch the registry from Eureka
+  instance:
+    hostname: localhost # Hostname for this instance (adjust for deployment)

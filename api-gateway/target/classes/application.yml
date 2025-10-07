@@ -1,0 +1,66 @@
+#spring:
+#  application:
+#    name: api-gateway
+#
+#server:
+#  port: 9099
+#
+#  cloud:
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+#      routes:
+#        - id: ORDER-SERVICE
+#          uri: http://localhost:9191
+#          predicates:
+#            - Path=/api/orders/** # to include /api/orders and any subpath like /api/orders/{id}
+#
+#        - id: inventory-service
+#          uri: lb://inventory-service #load-balanced via discovery.
+#          predicates:
+#            - Path=/api/inventory/** #routes any /api/inventory/... request to inventory-service
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka # Address of your Eureka Server
+#    registerWithEureka: true # Whether to register this service with Eureka
+#    fetchRegistry: true # Whether to fetch the registry from Eureka
+#  instance:
+#    hostname: localhost # Hostname for this instance (adjust for deployment)
+#    preferIpAddress: false # Whether to use IP address instead of hostname
+#
+#logging:
+#  level:
+#    reactor.netty: DEBUG
+
+
+spring:
+  application:
+    name: api-gateway
+
+server:
+  port: 9099
+
+  cloud:
+    gateway:
+      routes:
+        - id: order-service
+          uri: http://localhost:9191
+          predicates:
+            - Path=/api/orders/**
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    registerWithEureka: true
+    fetchRegistry: true
+  instance:
+    hostname: localhost
+    preferIpAddress: false
+
+logging:
+  level:
+    reactor.netty: DEBUG
